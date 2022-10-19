@@ -1,6 +1,6 @@
 import ListPokemon from './models/listPokemon';
 import PokemonRepository from './pokemon.repository';
-import Pokemon from "./models/pokemon";
+import Pokemon from './models/pokemon';
 
 export class UseCasePokemon {
   private repository: PokemonRepository;
@@ -13,10 +13,10 @@ export class UseCasePokemon {
   }
 
   async deleteAll() {
-    await this.repository.deleteAll()
+    await this.repository.deleteAll();
   }
 
   async getPokemonByName(name: string): Promise<Pokemon> {
-    return await this.repository.getByName(name)
+    return await this.repository.getByName(name);
   }
 }

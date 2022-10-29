@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import Checkout from '../../core/checkout/models/checkout';
 import { CheckoutService } from './checkout.service';
-import CreateCheckout from './contracts/inputs/create-checkout';
+import {CreateCheckout} from './contracts/inputs/create-checkout';
 
 @Controller('checkout')
 export class CheckoutController {
@@ -10,7 +10,7 @@ export class CheckoutController {
 
     @Post()
     createCheckout(@Body() createCheckout: CreateCheckout) {
-        return this.checkoutService.createCheckout(createCheckout.convertToEntity())
+        return this.checkoutService.createCheckout(CreateCheckout.ToEntity(createCheckout))
     }
 
 }

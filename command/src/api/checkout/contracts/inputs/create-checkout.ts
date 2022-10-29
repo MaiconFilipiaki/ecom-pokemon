@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger"
 import { IsEmail, IsNotEmpty } from "class-validator"
 import Checkout from "../../../../core/checkout/models/checkout"
 
-export default class CreateCheckout {
+export class CreateCheckout {
 
     @ApiProperty()
     @IsEmail()
@@ -25,13 +25,13 @@ export default class CreateCheckout {
     @IsNotEmpty()
     neighborhood: string
 
-    convertToEntity() {
+    static ToEntity(create: CreateCheckout) {
         return new Checkout(
-            this.email,
-            this.pokemonId,
-            this.street,
-            this.numberHome,
-            this.neighborhood
+            create.email,
+            create.pokemonId,
+            create.street,
+            create.numberHome,
+            create.neighborhood
         )
     }
 }

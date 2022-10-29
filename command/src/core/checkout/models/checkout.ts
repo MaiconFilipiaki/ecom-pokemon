@@ -21,4 +21,18 @@ export default class Checkout {
     @Column()
     neighborhood: string
 
+
+    constructor(
+    email: string,
+    pokemonId: string,
+    street: string,
+    numberHome: string,
+    neighborhood: string
+    ) {
+        this.email = email
+        this.pokemonId = pokemonId
+        this.street = street
+        this.numberHome = numberHome
+        this.neighborhood = neighborhood
+    }
 }

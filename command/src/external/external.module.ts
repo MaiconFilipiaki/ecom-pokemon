@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PostgresqlModule } from './postgresql/postgresql.module';
 import Checkout from '../core/checkout/models/checkout';
 
 @Module({
@@ -13,7 +14,9 @@ import Checkout from '../core/checkout/models/checkout';
             database: 'pokemon',
             entities: [Checkout],
             synchronize: true,
-          })
-    ]
+          }),
+        PostgresqlModule
+    ],
+    exports: [PostgresqlModule]
 })
 export class ExternalModule {}

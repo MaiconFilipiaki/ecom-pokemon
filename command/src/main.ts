@@ -2,9 +2,20 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import {Transport} from "@nestjs/microservices";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.connectMicroservice({
+    transport: Transport.KAFKA,
+    options: {
+      client: {
+        brokers: ['localhost:9094']
+      }
+    }
+  })
+
+  await app.startAllMicroservices()
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()

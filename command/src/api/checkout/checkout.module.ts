@@ -2,33 +2,30 @@ import { Module } from '@nestjs/common';
 import { ExternalModule } from '../../external/external.module';
 import { CheckoutService } from './checkout.service';
 import { CheckoutController } from './checkout.controller';
-import {ClientKafka, ClientsModule, Transport} from "@nestjs/microservices";
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import {ClientKafka, ClientProxyFactory, ClientsModule, Transport} from "@nestjs/microservices";
 
 @Module({
   imports: [
       ExternalModule,
+    ConfigModule,
     ClientsModule.register([
       {
-        name: 'KAFKA_SERVICE',
-        transport: Transport.KAFKA,
+        name: 'CHECKOUT_SERVICE_RA', transport: Transport.RMQ,
         options: {
-          client: {
-            brokers: ['localhost:9094'],
+          urls: [''],
+          queue: 'checkout',
+          queueOptions: {
+            durable: false
           },
         },
-      },
+      }
     ])
   ],
   providers: [
     CheckoutService,
     ExternalModule,
-    {
-      provide: 'KAFKA_PRODUCER',
-      useFactory: async (kafkaService: ClientKafka) => {
-        return kafkaService.connect();
-      },
-      inject: ['KAFKA_SERVICE'],
-    }
+
   ],
   controllers: [CheckoutController]
 })

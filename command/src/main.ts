@@ -7,11 +7,13 @@ import {Transport} from "@nestjs/microservices";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.connectMicroservice({
-    transport: Transport.KAFKA,
+    transport: Transport.RMQ,
     options: {
-      client: {
-        brokers: ['localhost:9094']
-      }
+      urls: [''],
+      queue: 'checkout',
+      queueOptions: {
+        durable: false
+      },
     }
   })
 

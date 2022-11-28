@@ -24,8 +24,7 @@ import {ClientKafka, ClientProxyFactory, ClientsModule, Transport} from "@nestjs
   ],
   providers: [
     CheckoutService,
-    ExternalModule,
-
+    ExternalModule
   ],
   controllers: [CheckoutController]
 })

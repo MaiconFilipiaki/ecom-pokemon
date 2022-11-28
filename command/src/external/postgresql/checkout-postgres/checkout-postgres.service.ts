@@ -14,6 +14,6 @@ export class CheckoutPostgresService implements CheckoutRepository {
     ) { }
 
     async create(checkout: checkout): Promise<checkout> {
-        return await this.usersRepository.create(checkout)
+        return this.usersRepository.create(checkout);
     }
 }

@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { PokemonApiModule } from './pokemon-api/pokemon-api.module';
+import { MongoModule } from './mongo/mongo.module';
 
 @Module({
-  imports: [PokemonApiModule],
+  imports: [PokemonApiModule, MongoModule],
   providers: [],
-  exports: [PokemonApiModule],
+  exports: [PokemonApiModule, MongoModule],
 })
 export class ExternalModule {}

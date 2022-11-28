@@ -12,7 +12,7 @@ export class PokemonCacheService {
     this.pokemonUseCase = new UseCasePokemon(pokemonApiService);
   }
 
-  @Timeout(1000)
+  // @Timeout(1000)
   @Cron(CronExpression.EVERY_HOUR)
   async handleCron() {
     try {

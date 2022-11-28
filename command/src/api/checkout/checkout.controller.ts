@@ -16,12 +16,7 @@ export class CheckoutController {
     @Post()
     async createCheckout(@Body() createCheckout: CreateCheckout) {
         const checkout = this.checkoutService.createCheckout(CreateCheckout.ToEntity(createCheckout))
-        await this.subscribersService.emit('add-checkout', JSON.stringify(createCheckout))
+        this.subscribersService.emit('add-checkout', JSON.stringify(createCheckout))
         return checkout
-    }
-
-    @EventPattern('add-checkout')
-    async envCheckout(t: string) {
-        console.log(t)
     }
 }

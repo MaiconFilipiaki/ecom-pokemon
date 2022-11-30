@@ -25,9 +25,16 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.get<any>('https://ecom-pokemon-query.azurewebsites.net/pokemon').subscribe(data => {
-      this.pokemons = data._pokemons
-    })
+    const cache = localStorage.getItem('cache')
+    if (cache) {
+      this.pokemons = JSON.parse(cache)
+    } else {
+      this.http.get<any>('https://ecom-pokemon-query.azurewebsites.net/pokemon').subscribe(data => {
+        localStorage.setItem('cache', JSON.stringify(data._pokemons))
+        this.pokemons = data._pokemons
+      })
+    }
+
   }
 
   botaoClick(pokemon: string) {

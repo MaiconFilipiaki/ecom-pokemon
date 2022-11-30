@@ -34,4 +34,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/cart'])
   }
 
+  redirectOrder() {
+    this.router.navigate(['/orders'])
+  }
+
 }

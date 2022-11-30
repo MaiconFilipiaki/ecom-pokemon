@@ -11,7 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { FormsModule } from '@angular/forms';
 
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -19,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     HomeComponent,
     CartComponent,
-    Modal
+    Modal,
+    CheckoutComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +36,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatExpansionModule,
+    FormsModule
 ],
   exports: [
     HomeComponent
